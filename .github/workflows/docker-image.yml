@@ -39,14 +39,14 @@ jobs:
           NEW_VERSION: ${{ steps.version.outputs.version }}
         run: |
           echo "iniciando login"
-           docker build -t cello93/docker-graphql:$NEW_VERSION .
-           docker build -t cello93/docker-graphql:latest .
+           docker build -t cello93/docker-deploy:$NEW_VERSION .
+           docker build -t cello93/docker-deploy:latest .
 
       - name: Push Docker Image
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
         run: |
-          docker push cello93/docker-graphql:$NEW_VERSION
-          docker push cello93/docker-graphql:latest
+          docker push cello93/docker-deploy:$NEW_VERSION
+          docker push cello93/docker-deploy:latest
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
